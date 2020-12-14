@@ -29,9 +29,13 @@ jobs:
         start: yarn start
         # quote the url to be safe against YML parsing surprises
         wait-on: 'http://localhost:3000'
-        env: branch-name=${{ github.head_ref }}
+        env: 
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          branch-name=${{ github.head_ref }}
       env:
-        TZ: Europe/Berlin
+        TZ: 
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+          Europe/Berlin
 
     - name: Build
       run: yarn build
