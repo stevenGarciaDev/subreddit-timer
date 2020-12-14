@@ -24,18 +24,15 @@ jobs:
       run: yarn test
 
     - name: End-to-End Tests
-      uses: cypress-io/github-action@v1
+      uses: cypress-io/github-action@v2
       with:
         start: yarn start
         # quote the url to be safe against YML parsing surprises
         wait-on: 'http://localhost:3000'
         env: 
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
           branch-name=${{ github.head_ref }}
       env:
-        TZ: 
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-          Europe/Berlin
+        TZ: Europe/Berlin
 
     - name: Build
       run: yarn build
