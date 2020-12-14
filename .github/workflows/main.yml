@@ -5,11 +5,6 @@ on:
     branches: [ master ]
 
 jobs:
-  steps:
-  - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
-    id: ACTIONS_ALLOW_UNSECURE_COMMANDS
-    run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
-    
   validate:
     runs-on: ubuntu-latest
 
@@ -18,7 +13,6 @@ jobs:
 
     - name: Validate Branch Name
       run: sh ./scripts/validate-branch-name ${{ github.head_ref }}
-      
 
     - name: Install
       run: yarn install
