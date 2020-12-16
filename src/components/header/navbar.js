@@ -13,6 +13,11 @@ const Nav = styled.nav`
     width: 100%
 `;
 
+const LogoLink = styled(NavLink)`
+    height: 100%;
+    width: 100%;
+`;
+
 const AppLogo = styled(Logo)`
     display: block;
     height: 36px;
@@ -27,6 +32,7 @@ const NavItems = styled.div`
 const NavbarLink = styled(NavLink)`
     color: ${(props) => props.theme.colors.brownishGrey};
     font-size: 16px;
+    height: 100%;
     padding: 0 13px;
     text-decoration: none;
 `;
@@ -35,9 +41,9 @@ const Navbar = () => (
   <header>
     <Nav>
       <div>
-        <NavLink to="/">
+        <LogoLink to="/">
           <AppLogo />
-        </NavLink>
+        </LogoLink>
       </div>
       <NavItems>
         <NavbarLink to="/search/javascript">Search</NavbarLink>
