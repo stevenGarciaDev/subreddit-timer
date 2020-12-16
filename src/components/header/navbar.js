@@ -32,18 +32,20 @@ const NavbarLink = styled(NavLink)`
 `;
 
 const Navbar = () => (
-  <Nav>
-    <div>
-      <NavLink to="/">
-        <AppLogo />
-      </NavLink>
-    </div>
-    <NavItems>
-      <NavbarLink to="/search/javascript">Search</NavbarLink>
-      <NavbarLink to="/#how-it-works">How it works</NavbarLink>
-      <NavbarLink to="/#about">About</NavbarLink>
-    </NavItems>
-  </Nav>
+  <header>
+    <Nav>
+      <div>
+        <NavLink to="/">
+          <AppLogo />
+        </NavLink>
+      </div>
+      <NavItems>
+        <NavbarLink to="/search/javascript">Search</NavbarLink>
+        <NavbarLink to="/#how-it-works">How it works</NavbarLink>
+        <NavbarLink to="/#about">About</NavbarLink>
+      </NavItems>
+    </Nav>
+  </header>
 );
 
 export default Navbar;
