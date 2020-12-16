@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './logo.svg';
 
 const Nav = styled.nav`
@@ -11,11 +11,6 @@ const Nav = styled.nav`
     margin: 0 0 27px;
     padding: 0 80px 0;
     width: 100%
-`;
-
-const LogoLink = styled(NavLink)`
-    height: 100%;
-    width: 100%;
 `;
 
 const AppLogo = styled(Logo)`
@@ -40,11 +35,9 @@ const NavbarLink = styled(NavLink)`
 const Navbar = () => (
   <header>
     <Nav>
-      <div>
-        <LogoLink to="/">
-          <AppLogo />
-        </LogoLink>
-      </div>
+      <Link to="/">
+        <AppLogo />
+      </Link>
       <NavItems>
         <NavbarLink to="/search/javascript">Search</NavbarLink>
         <NavbarLink to="/#how-it-works">How it works</NavbarLink>
