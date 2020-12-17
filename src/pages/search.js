@@ -2,7 +2,7 @@ import React from 'react';
 
 const Search = () => (
   <div>
-    Search
+    <h1>Search</h1>
   </div>
 );
 
