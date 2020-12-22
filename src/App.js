@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 import GlobalStyle from './GlobalStyle';
 import Navbar from './components/header';
+import Footer from './components/footer';
 import Home from './pages/home';
 import Search from './pages/search';
 import theme from './theme';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" component={Home} />
           <Route>404 - Not Found</Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
