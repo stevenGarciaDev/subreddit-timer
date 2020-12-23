@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from './sign.svg';
 
 export const Container = styled.div`
-    bottom: 0;
-    position: absolute;
     width: 100%;
 `;
 
@@ -17,7 +15,6 @@ export const FooterSection = styled.footer`
     padding: 0 20px;
     margin: 0 auto;
     max-width: 980px;
-    
 `;
 
 export const FooterLink = styled(Link)`

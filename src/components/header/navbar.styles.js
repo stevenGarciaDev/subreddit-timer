@@ -7,7 +7,6 @@ export const Nav = styled.nav`
     display: flex;
     height: 100px;
     justify-content: space-between;
-    margin: 0 0 27px;
     padding: 0 80px 0;
     width: 100%
 `;
