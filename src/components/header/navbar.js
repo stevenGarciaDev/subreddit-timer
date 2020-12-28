@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   Nav, AppLogo, NavItems, NavbarLink,
 } from './navbar.styles';
+import DEFAULT_SUBREDDIT from '../../shared/defaultSubreddit';
 
 const Navbar = () => (
   <header>
@@ -11,7 +12,7 @@ const Navbar = () => (
         <AppLogo />
       </Link>
       <NavItems>
-        <NavbarLink to="/search/javascript">Search</NavbarLink>
+        <NavbarLink to={`/search/${DEFAULT_SUBREDDIT}`}>Search</NavbarLink>
         <NavbarLink to="/#how-it-works">How it works</NavbarLink>
         <NavbarLink to="/#about">About</NavbarLink>
       </NavItems>

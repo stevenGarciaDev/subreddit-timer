@@ -10,6 +10,7 @@ import {
   HeatMapImage
 } from './hero-section.styles';
 import heatMap from './table.png';
+import DEFAULT_SUBREDDIT from '../../shared/defaultSubreddit';
 
 const HeroSection = () => (
   <>
@@ -18,10 +19,10 @@ const HeroSection = () => (
       <SubHeadline>
         Great timing, great results! Find the best time to post on your subreddit.
       </SubHeadline>
-      <CallToActionButton as={Link} to="/search/javascript">SHOW ME THE BEST TIME</CallToActionButton>
-      <DefaultSubreddit>r/javascript</DefaultSubreddit>
+      <CallToActionButton as={Link} to={`/search/${DEFAULT_SUBREDDIT}`}>SHOW ME THE BEST TIME</CallToActionButton>
+      <DefaultSubreddit>{`r/${DEFAULT_SUBREDDIT}`}</DefaultSubreddit>
     </HeadlineSection>
-    <HeatMapLink to="/search/javascript">
+    <HeatMapLink to={`/search/${DEFAULT_SUBREDDIT}`}>
       <HeatMapImage src={heatMap} alt="Heat Map" />
     </HeatMapLink>
   </>
