@@ -7,7 +7,7 @@ import {
   CallToActionButton,
   DefaultSubreddit,
   HeatMapLink,
-  HeatMapImage
+  HeatMapImage,
 } from './hero-section.styles';
 import heatMap from './table.png';
 import DEFAULT_SUBREDDIT from '../../shared/defaultSubreddit';
