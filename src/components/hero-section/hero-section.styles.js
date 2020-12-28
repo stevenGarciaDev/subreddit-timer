@@ -17,7 +17,6 @@ export const Headline = styled.p`
 `;
 
 export const SubHeadline = styled.p`
-  color: #93918f;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   position: relative;
@@ -43,7 +42,6 @@ export const CallToActionButton = styled.button`
 `;
 
 export const DefaultSubreddit = styled.p`
-  color: #93918f;
   font-family: 'Montserrat-Medium', sans-serif;
   font-size: 16px;
   margin: 0;
