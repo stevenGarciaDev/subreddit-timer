@@ -14,7 +14,8 @@ describe('Footer', () => {
   });
 
   it('ooloo.io link contains href to the correct url', () => {
-    const link = screen.getByRole('link', { name: 'ooloo.io' });
+    const result = screen.getAllByRole('link', { name: 'ooloo.io' });
+    const link = result[1];
 
     expect(link).toHaveAttribute('href', 'https://ooloo.io/employers');
   });
