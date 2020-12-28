@@ -56,3 +56,7 @@ export const HeatMapLink = styled(Link)`
   position: relative;
   top: 32px;
 `;
+
+export const HeatMapImage = styled.img`
+  max-width: 100%;
+`;

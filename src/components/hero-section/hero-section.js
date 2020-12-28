@@ -7,6 +7,7 @@ import {
   CallToActionButton,
   DefaultSubreddit,
   HeatMapLink,
+  HeatMapImage
 } from './hero-section.styles';
 import heatMap from './table.png';
 
@@ -21,7 +22,7 @@ const HeroSection = () => (
       <DefaultSubreddit>r/javascript</DefaultSubreddit>
     </HeadlineSection>
     <HeatMapLink to="/search/javascript">
-      <img src={heatMap} alt="Heat Map" />
+      <HeatMapImage src={heatMap} alt="Heat Map" />
     </HeatMapLink>
   </>
 );
