@@ -1,19 +1,29 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 import App from '../App';
 
-describe('Header', () => {
-  beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>,
-    );
-  });
+const setup = (initialPath = '/') => {
+  let history;
+  render(
+    <MemoryRouter initialEntries={[initialPath]}>
+      <App />
+      <Route
+        path="*"
+        render={(props) => {
+          history = props.history;
+          return null;
+        }}
+      />
+    </MemoryRouter>,
+  );
+  return { history };
+};
 
+describe('Header', () => {
   it('Navigates to the home page when logo is clicked', () => {
+    setup('/');
     const logo = screen.getByRole('link', { name: /logo\.svg/i });
 
     userEvent.click(logo);
@@ -22,10 +32,23 @@ describe('Header', () => {
     expect(screen.getByRole('heading', { name: 'About' })).toBeInTheDocument();
   });
 
-  test.each([['Search'], ['How it works'], ['About']])(
-    '"%s" link points to the correct page',
+  it('Search link navigates to the search page when clicked', () => {
+    setup('/');
+    const link = screen.getByRole('link', { name: 'Search' });
+
+    userEvent.click(link);
+
+    expect(
+      screen.getByRole('heading', { name: 'Search' }),
+    ).toBeInTheDocument();
+  });
+
+  test.each([['How it works'], ['About']])(
+    '"%s" anchor tag scrolls to the correct section',
     (navLinkText) => {
-      const link = screen.getByRole('link', { name: navLinkText });
+      setup('/');
+      const nav = screen.getByRole('navigation');
+      const link = within(nav).getByRole('link', { name: navLinkText });
 
       userEvent.click(link);
 
