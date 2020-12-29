@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen, render, within } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import App from '../App';
 
@@ -21,18 +21,18 @@ const setup = (initialPath = '/') => {
 };
 
 describe('Info Section', () => {
-  it('Successfully displays How it works  and About section', () => {
+  it('Successfully displays How it works and About section', () => {
     setup('/');
-    const result = screen.getAllByRole('link', { name: 'ooloo.io' });
-    const link = result[0];
+    const article = screen.getByRole('article');
+    const link = within(article).getByRole('link', { name: 'ooloo.io' });
 
     expect(link).toHaveAttribute('href', 'https://ooloo.io');
   });
 
   it('ooloo.io link navigates to the correct url', () => {
     setup('/');
-    const result = screen.getAllByRole('link', { name: 'ooloo.io' });
-    const link = result[0];
+    const article = screen.getByRole('article');
+    const link = within(article).getByRole('link', { name: 'ooloo.io' });
 
     expect(link).toHaveAttribute('href', 'https://ooloo.io');
   });

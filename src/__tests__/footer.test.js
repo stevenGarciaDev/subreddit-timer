@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../App';
@@ -14,8 +14,8 @@ describe('Footer', () => {
   });
 
   it('ooloo.io link contains href to the correct url', () => {
-    const result = screen.getAllByRole('link', { name: 'ooloo.io' });
-    const link = result[1];
+    const footer = screen.getByRole('contentinfo');
+    const link = within(footer).getByRole('link', { name: 'ooloo.io' });
 
     expect(link).toHaveAttribute('href', 'https://ooloo.io/employers');
   });
