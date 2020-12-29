@@ -13,8 +13,8 @@ const Navbar = () => (
       </Link>
       <NavItems>
         <NavbarLink to={`/search/${DEFAULT_SUBREDDIT}`}>Search</NavbarLink>
-        <NavbarLink to="/#how-it-works">How it works</NavbarLink>
-        <NavbarLink to="/#about">About</NavbarLink>
+        <NavbarLink as="a" href="#how-it-works">How it works</NavbarLink>
+        <NavbarLink as="a" href="#about">About</NavbarLink>
       </NavItems>
     </Nav>
   </header>
