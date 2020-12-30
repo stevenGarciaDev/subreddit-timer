@@ -1,6 +1,6 @@
 import React from 'react';
-import HeroSection from '../components/hero-section';
-import InfoSection from '../components/info-section';
+import HeroSection from '../../components/hero-section';
+import InfoSection from '../../components/info-section';
 
 const Home = () => (
   <div>
