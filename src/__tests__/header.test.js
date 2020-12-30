@@ -33,14 +33,15 @@ describe('Header', () => {
   });
 
   it('Search link navigates to the search page when clicked', () => {
-    setup('/');
+    const { history } = setup('/');
     const link = screen.getByRole('link', { name: 'Search' });
 
     userEvent.click(link);
 
     expect(
-      screen.getByRole('heading', { name: 'Search' }),
+      screen.getByRole('button', { name: /search/i }),
     ).toBeInTheDocument();
+    expect(history.location.pathname).toEqual('/search/javascript');
   });
 
   test.each([['How it works'], ['About']])(
