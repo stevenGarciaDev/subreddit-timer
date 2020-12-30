@@ -17,6 +17,7 @@ export const Input = styled.input`
   color: black;
   font-size: 14px;
   height: 36px;
+  margin: 0px 10px;
   outline: none;
   padding-left: 16px;
   width: 370px;
@@ -25,7 +26,6 @@ export const Input = styled.input`
 export const SubredditLabel = styled.label`
   color: #9e9e9e;
   font-size: 18px;
-  margin-right: 10px;
   position: relaive;
   left: 5px;
 `;
@@ -38,7 +38,6 @@ export const SearchButton = styled.button`
   cursor: pointer;
   font-size: 14px;
   height: 36px;
-  margin-left: 10px;
   outline: none;
   text-align: center;
   width: 92px;
