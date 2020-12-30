@@ -26,7 +26,7 @@ export const SubHeadline = styled.p`
 export const CallToActionButton = styled.button`
   align-items: center;
   color: white;
-  background-color: #fdb755;
+  background-color: ${(props) => props.theme.colors.orange};
   border: none;
   border-radius: 4px;
   display: flex;

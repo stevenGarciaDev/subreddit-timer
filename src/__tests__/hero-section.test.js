@@ -31,7 +31,7 @@ describe('Hero Section', () => {
       userEvent.click(button);
 
       expect(
-        screen.getByRole('heading', { name: /search/i }),
+        screen.getByRole('button', { name: /search/i }),
       ).toBeInTheDocument();
       expect(history.location.pathname).toBe('/search/javascript');
     },
