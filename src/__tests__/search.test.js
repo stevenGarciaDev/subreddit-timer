@@ -39,6 +39,7 @@ describe('Search page', () => {
     const submitButton = screen.getByRole('button', { name: /search/i });
     userEvent.click(submitButton);
 
+    expect(screen.getByText(/find the best time for a subreddit/i)).toBeInTheDocument();
     expect(history.location.pathname).toEqual('/search/reactjs');
   });
 });
