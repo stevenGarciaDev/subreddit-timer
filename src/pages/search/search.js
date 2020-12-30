@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Headline } from '../../components/hero-section/hero-section.styles';
@@ -10,16 +10,19 @@ import {
   SearchButton,
 } from './search.styles';
 
-const Search = ({ history, match: { params } }) => {
+const Search = ({ history }) => {
   const { subreddit: initialSubreddit } = useParams();
   const [subreddit, setSubreddit] = useState(initialSubreddit);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // eslint-disable-next-line no-param-reassign
-    params.subreddit = subreddit;
+ 
     history.push(`${subreddit}`);
   };
+
+  useEffect(() => {
+    setSubreddit(initialSubreddit);
+  }, [initialSubreddit]);
 
   return (
     <Container>
@@ -35,17 +38,11 @@ const Search = ({ history, match: { params } }) => {
 
 Search.defaultProps = {
   history: {},
-  match: {},
 };
 
 Search.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
-  }),
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      subreddit: PropTypes.string,
-    }),
   }),
 };
 
