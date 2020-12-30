@@ -22,6 +22,14 @@ const setup = (initialPath = '/') => {
 };
 
 describe('Search page', () => {
+  it('Displays the route parameter as the value for the input field', () => {
+    setup('/search/reactjs');
+
+    const subredditInput = screen.getByLabelText('r /');
+
+    expect(subredditInput.value).toEqual('reactjs');
+  });
+
   it('Successfully updates URL route parameter when user clicks the search button', () => {
     const { history } = setup('/search/javascript');
 
