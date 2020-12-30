@@ -16,7 +16,6 @@ const Search = ({ history }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
- 
     history.push(`${subreddit}`);
   };
 
