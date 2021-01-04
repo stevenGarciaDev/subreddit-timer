@@ -1,6 +1,8 @@
 import React from 'react';
 import fetchMock from 'jest-fetch-mock';
-import { screen, render, fireEvent, act } from '@testing-library/react';
+import {
+  screen, render, fireEvent, act,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Route } from 'react-router-dom';
 import App from '../App';
@@ -82,6 +84,7 @@ describe('Search page', () => {
     const loadingMessage = await screen.getByTestId('loading-spinner');
     expect(loadingMessage).toBeInTheDocument();
 
+    expect(await screen.findByText(/resolved/i)).toBeInTheDocument();
     expect(fetch).toHaveBeenCalledWith('https://www.reddit.com/r/reactjs/top.json?t=year&limit=500');
     await act(() => promise);
   });
