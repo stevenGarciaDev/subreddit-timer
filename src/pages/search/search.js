@@ -9,18 +9,31 @@ import {
   SubredditLabel,
   SearchButton,
 } from './search.styles';
+import LoadingSpinner from '../../components/loading-spinner';
+import getSubredditPosts from '../../services/subredditService';
 
 const Search = ({ history }) => {
   const { subreddit: initialSubreddit } = useParams();
   const [subreddit, setSubreddit] = useState(initialSubreddit);
+  const [posts, setPosts] = useState([]);
+  const [status, setStatus] = useState('idle');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setStatus('loading');
     history.push(`${subreddit}`);
+  };
+
+  const getPosts = async () => {
+    const subredditPosts = await getSubredditPosts(subreddit);
+    setPosts(subredditPosts);
+    setStatus('resolved');
   };
 
   useEffect(() => {
     setSubreddit(initialSubreddit);
+    getPosts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialSubreddit]);
 
   return (
@@ -29,8 +42,12 @@ const Search = ({ history }) => {
       <Form onSubmit={(event) => handleSubmit(event)}>
         <SubredditLabel htmlFor="subreddit">r /</SubredditLabel>
         <Input id="subreddit" type="text" value={subreddit} onChange={(e) => setSubreddit(e.target.value)} />
-        <SearchButton>SEARCH</SearchButton>
+        <SearchButton type="submit">SEARCH</SearchButton>
       </Form>
+      <div>
+        {status !== 'resolved' ? <LoadingSpinner />
+          : <div>Resolved</div> }
+      </div>
     </Container>
   );
 };
