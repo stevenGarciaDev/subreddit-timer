@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export default async function getSubredditPosts(subreddit) {
   try {
     let posts = [];

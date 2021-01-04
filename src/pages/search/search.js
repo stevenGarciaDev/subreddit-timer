@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 import { Headline } from '../../components/hero-section/hero-section.styles';
 import {
   Container,
@@ -27,7 +28,9 @@ const Search = ({ history }) => {
   const getPosts = async () => {
     const subredditPosts = await getSubredditPosts(subreddit);
     setPosts(subredditPosts);
-    setStatus('resolved');
+    if (subredditPosts.length > 0) {
+      setStatus('resolved');
+    }
   };
 
   useEffect(() => {
@@ -46,7 +49,12 @@ const Search = ({ history }) => {
       </Form>
       <div>
         {status !== 'resolved' ? <LoadingSpinner />
-          : <div>Resolved</div> }
+          : (
+            <div>
+              <h1>Resolved</h1>
+              {posts.map((post) => <p key={uuidv4()}>{post.data.title}</p>)}
+            </div>
+          ) }
       </div>
     </Container>
   );
