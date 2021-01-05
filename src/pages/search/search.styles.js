@@ -42,3 +42,7 @@ export const SearchButton = styled.button`
   text-align: center;
   width: 92px;
 `;
+
+export const ErrorMessage = styled.h2`
+  text-align: center;
+`;

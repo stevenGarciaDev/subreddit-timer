@@ -9,28 +9,28 @@ import {
   Input,
   SubredditLabel,
   SearchButton,
+  ErrorMessage,
 } from './search.styles';
 import LoadingSpinner from '../../components/loading-spinner';
-import getSubredditPosts from '../../services/subredditService';
+import fetchPaginatedPosts from '../../services/subredditService';
 
 const Search = ({ history }) => {
   const { subreddit: initialSubreddit } = useParams();
   const [subreddit, setSubreddit] = useState(initialSubreddit);
   const [posts, setPosts] = useState([]);
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState('pending');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setStatus('loading');
+    setStatus('pending');
     history.push(`${subreddit}`);
   };
 
   const getPosts = async () => {
-    const subredditPosts = await getSubredditPosts(subreddit);
+    const subredditPosts = await fetchPaginatedPosts(subreddit);
     setPosts(subredditPosts);
-    if (subredditPosts.length > 0) {
-      setStatus('resolved');
-    }
+    const updatedStatus = (subredditPosts.length > 0) ? 'resolved' : 'rejected';
+    setStatus(updatedStatus);
   };
 
   useEffect(() => {
@@ -48,13 +48,15 @@ const Search = ({ history }) => {
         <SearchButton type="submit">SEARCH</SearchButton>
       </Form>
       <div>
-        {status !== 'resolved' ? <LoadingSpinner />
-          : (
+        {status === 'rejected' && <ErrorMessage>Unable to fetch data from Reddit API at this time.</ErrorMessage>}
+        {status === 'pending' && <LoadingSpinner />}
+        {status === 'resolved'
+            && (
             <div>
               <h1>Resolved</h1>
               {posts.map((post) => <p key={uuidv4()}>{post.data.title}</p>)}
             </div>
-          ) }
+            )}
       </div>
     </Container>
   );
