@@ -56,6 +56,7 @@ describe('Search page', () => {
   });
 
   it('Displays the loading spinner while waiting for asynchronous response', async () => {
+    fetch.mockResponse(JSON.stringify(mockResponse));
     const promise = Promise.resolve();
     setup('/search/javascript');
 
@@ -65,8 +66,25 @@ describe('Search page', () => {
     const submitButton = screen.getByRole('button', { name: /search/i });
     userEvent.click(submitButton);
 
-    const loadingMessage = await screen.getByTestId('loading-spinner');
+    const loadingMessage = await screen.queryByText('loadingSpinnerImage.svg');
     expect(loadingMessage).toBeInTheDocument();
+    await act(() => promise);
+  });
+
+  it('Displays an error message if GET request for subreddit posts is rejected', async () => {
+    // eslint-disable-next-line prefer-promise-reject-errors
+    fetch.mockReject(() => Promise.reject('API is down'));
+    const promise = Promise.resolve();
+    setup('/search/javascript');
+
+    const subredditInput = screen.getByLabelText('r /');
+    fireEvent.change(subredditInput, { target: { value: 'reactjs' } });
+
+    const submitButton = screen.getByRole('button', { name: /search/i });
+    userEvent.click(submitButton);
+
+    const errorMessage = await screen.findByText(/unable to fetch data/i);
+    expect(errorMessage).toBeInTheDocument();
     await act(() => promise);
   });
 
@@ -81,11 +99,11 @@ describe('Search page', () => {
     const submitButton = screen.getByRole('button', { name: /search/i });
     userEvent.click(submitButton);
 
-    const loadingMessage = await screen.getByTestId('loading-spinner');
+    const loadingMessage = await screen.queryByText('loadingSpinnerImage.svg');
     expect(loadingMessage).toBeInTheDocument();
 
     expect(await screen.findByText(/resolved/i)).toBeInTheDocument();
-    expect(fetch).toHaveBeenCalledWith('https://www.reddit.com/r/reactjs/top.json?t=year&limit=500');
+    expect(fetch).toHaveBeenCalledWith('https://www.reddit.com/r/reactjs/top.json?t=year&limit=100');
     await act(() => promise);
   });
 });
