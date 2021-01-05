@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 import { Headline } from '../../components/hero-section/hero-section.styles';
 import {
   Container,
@@ -8,19 +9,34 @@ import {
   Input,
   SubredditLabel,
   SearchButton,
+  ErrorMessage,
 } from './search.styles';
+import LoadingSpinner from '../../components/loading-spinner';
+import fetchPaginatedPosts from '../../services/subredditService';
 
 const Search = ({ history }) => {
   const { subreddit: initialSubreddit } = useParams();
   const [subreddit, setSubreddit] = useState(initialSubreddit);
+  const [posts, setPosts] = useState([]);
+  const [status, setStatus] = useState('pending');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setStatus('pending');
     history.push(`${subreddit}`);
+  };
+
+  const getPosts = async () => {
+    const subredditPosts = await fetchPaginatedPosts(subreddit);
+    setPosts(subredditPosts);
+    const updatedStatus = (subredditPosts.length > 0) ? 'resolved' : 'rejected';
+    setStatus(updatedStatus);
   };
 
   useEffect(() => {
     setSubreddit(initialSubreddit);
+    getPosts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialSubreddit]);
 
   return (
@@ -29,8 +45,19 @@ const Search = ({ history }) => {
       <Form onSubmit={(event) => handleSubmit(event)}>
         <SubredditLabel htmlFor="subreddit">r /</SubredditLabel>
         <Input id="subreddit" type="text" value={subreddit} onChange={(e) => setSubreddit(e.target.value)} />
-        <SearchButton>SEARCH</SearchButton>
+        <SearchButton type="submit">SEARCH</SearchButton>
       </Form>
+      <div>
+        {status === 'rejected' && <ErrorMessage>Unable to fetch data from Reddit API at this time.</ErrorMessage>}
+        {status === 'pending' && <LoadingSpinner />}
+        {status === 'resolved'
+            && (
+            <div>
+              <h1>Resolved</h1>
+              {posts.map((post) => <p key={uuidv4()}>{post.data.title}</p>)}
+            </div>
+            )}
+      </div>
     </Container>
   );
 };
