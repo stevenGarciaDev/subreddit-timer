@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
 import { Headline } from '../../components/hero-section/hero-section.styles';
 import {
   Container,
@@ -12,6 +11,7 @@ import {
   ErrorMessage,
 } from './search.styles';
 import LoadingSpinner from '../../components/loading-spinner';
+import Heatmap from '../../components/heatmap';
 import fetchPaginatedPosts from '../../services/subredditService';
 
 const Search = ({ history }) => {
@@ -47,17 +47,11 @@ const Search = ({ history }) => {
         <Input id="subreddit" type="text" value={subreddit} onChange={(e) => setSubreddit(e.target.value)} />
         <SearchButton type="submit">SEARCH</SearchButton>
       </Form>
-      <div>
+      <>
         {status === 'rejected' && <ErrorMessage>Unable to fetch data from Reddit API at this time.</ErrorMessage>}
         {status === 'pending' && <LoadingSpinner />}
-        {status === 'resolved'
-            && (
-            <div>
-              <h1>Resolved</h1>
-              {posts.map((post) => <p key={uuidv4()}>{post.data.title}</p>)}
-            </div>
-            )}
-      </div>
+        {status === 'resolved' && <Heatmap posts={posts} />}
+      </>
     </Container>
   );
 };
