@@ -11,6 +11,7 @@ import {
   MapContainer,
 } from './heatmap.styles';
 import HeatmapBox from '../heatmap-box';
+import UsertimeZone from '../user-timezone';
 
 const Heatmap = ({ posts }) => {
   let heatmap = [];
@@ -48,37 +49,40 @@ const Heatmap = ({ posts }) => {
 
   heatmap = createHeatmap();
   return (
-    <Grid data-testid="heatmap-grid">
-      <HoursContainer>
-        <Hour>12:00am</Hour>
-        <Hour>2:00am</Hour>
-        <Hour>4:00am</Hour>
-        <Hour>6:00am</Hour>
-        <Hour>8:00am</Hour>
-        <Hour>10:00am</Hour>
-        <Hour>12:00pm</Hour>
-        <Hour>2:00pm</Hour>
-        <Hour>4:00pm</Hour>
-        <Hour>6:00pm</Hour>
-        <Hour>8:00pm</Hour>
-        <Hour>10:00pm</Hour>
-      </HoursContainer>
-      <DaysContainer>
-        <Day>Sunday</Day>
-        <Day>Monday</Day>
-        <Day>Tuesday</Day>
-        <Day>Wednesday</Day>
-        <Day>Thursday</Day>
-        <Day>Friday</Day>
-        <Day>Saturday</Day>
-      </DaysContainer>
-      <MapContainer>
-        {heatmap.length > 0 && heatmap.map((day) => (
-          day.map((postsPerHour) => (
-            <HeatmapBox key={uuidv4()} posts={postsPerHour} />))
-        ))}
-      </MapContainer>
-    </Grid>
+    <div>
+      <Grid data-testid="heatmap-grid">
+        <HoursContainer>
+          <Hour>12:00am</Hour>
+          <Hour>2:00am</Hour>
+          <Hour>4:00am</Hour>
+          <Hour>6:00am</Hour>
+          <Hour>8:00am</Hour>
+          <Hour>10:00am</Hour>
+          <Hour>12:00pm</Hour>
+          <Hour>2:00pm</Hour>
+          <Hour>4:00pm</Hour>
+          <Hour>6:00pm</Hour>
+          <Hour>8:00pm</Hour>
+          <Hour>10:00pm</Hour>
+        </HoursContainer>
+        <DaysContainer>
+          <Day>Sunday</Day>
+          <Day>Monday</Day>
+          <Day>Tuesday</Day>
+          <Day>Wednesday</Day>
+          <Day>Thursday</Day>
+          <Day>Friday</Day>
+          <Day>Saturday</Day>
+        </DaysContainer>
+        <MapContainer>
+          {heatmap.length > 0 && heatmap.map((day) => (
+            day.map((postsPerHour) => (
+              <HeatmapBox key={uuidv4()} posts={postsPerHour} />))
+          ))}
+        </MapContainer>
+      </Grid>
+      <UsertimeZone />
+    </div>
   );
 };
 
