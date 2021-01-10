@@ -102,7 +102,7 @@ describe('Search page', () => {
     const loadingMessage = await screen.queryByText('loadingSpinnerImage.svg');
     expect(loadingMessage).toBeInTheDocument();
 
-    expect(await screen.findByText(/resolved/i)).toBeInTheDocument();
+    expect(await screen.findByTestId('heatmap-grid')).toBeInTheDocument();
     expect(fetch).toHaveBeenCalledWith('https://www.reddit.com/r/reactjs/top.json?t=year&limit=100');
     await act(() => promise);
   });
