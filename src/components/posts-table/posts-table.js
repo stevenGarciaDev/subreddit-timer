@@ -52,7 +52,7 @@ const PostsTable = ({ posts }) => {
             return (
               <TableRow key={id}>
                 <TableData>
-                  <TableLink as="a" target="_blank" href={`https://www.reddit.com${permalink}`}>
+                  <TableLink as="a" target="_blank" rel="noopener noreferrer" href={`https://www.reddit.com${permalink}`}>
                     {getLinkTextToDisplay(title, maxLengthForTitle)}
                   </TableLink>
                 </TableData>
@@ -60,7 +60,7 @@ const PostsTable = ({ posts }) => {
                 <TableData>{score}</TableData>
                 <TableData>{num_comments}</TableData>
                 <TableData>
-                  <TableLink as="a" target="_blank" href={`https://www.reddit.com/user/${author}`}>
+                  <TableLink as="a" target="_blank" rel="noopener noreferrer" href={`https://www.reddit.com/user/${author}`}>
                     {getLinkTextToDisplay(author, maxLengthForAuthor)}
                   </TableLink>
                 </TableData>
