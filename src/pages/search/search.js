@@ -25,6 +25,7 @@ const Search = ({ history }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setStatus('pending');
+    setPostsToDisplay([]);
     history.push(`${subreddit}`);
   };
 
