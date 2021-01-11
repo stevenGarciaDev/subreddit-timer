@@ -12,12 +12,14 @@ import {
 } from './search.styles';
 import LoadingSpinner from '../../components/loading-spinner';
 import Heatmap from '../../components/heatmap';
+import PostsTable from '../../components/posts-table';
 import fetchPaginatedPosts from '../../services/subredditService';
 
 const Search = ({ history }) => {
   const { subreddit: initialSubreddit } = useParams();
   const [subreddit, setSubreddit] = useState(initialSubreddit);
-  const [posts, setPosts] = useState([]);
+  const [allPosts, setPosts] = useState([]);
+  const [postsToDisplay, setPostsToDisplay] = useState([]);
   const [status, setStatus] = useState('pending');
 
   const handleSubmit = async (event) => {
@@ -50,8 +52,11 @@ const Search = ({ history }) => {
       <>
         {status === 'rejected' && <ErrorMessage>Unable to fetch data from Reddit API at this time.</ErrorMessage>}
         {status === 'pending' && <LoadingSpinner />}
-        {status === 'resolved' && <Heatmap posts={posts} />}
+        {status === 'resolved' && <Heatmap posts={allPosts} selectPosts={setPostsToDisplay} />}
       </>
+      <div>
+        {postsToDisplay.length > 0 && <PostsTable posts={postsToDisplay} />}
+      </div>
     </Container>
   );
 };
