@@ -72,7 +72,12 @@ const Heatmap = ({ posts, selectPosts }) => {
         <MapContainer>
           {heatmap.length > 0 && heatmap.map((day) => (
             day.map((postsPerHour) => (
-              <HeatmapBox key={uuidv4()} posts={postsPerHour} setSectionOfPostsToDisplay={selectPosts} />))
+              <HeatmapBox
+                key={uuidv4()}
+                posts={postsPerHour}
+                setSectionOfPostsToDisplay={selectPosts}
+              />
+            ))
           ))}
         </MapContainer>
       </Grid>
@@ -83,6 +88,7 @@ const Heatmap = ({ posts, selectPosts }) => {
 
 Heatmap.defaultProps = {
   posts: [],
+  selectPosts: () => {},
 };
 
 Heatmap.propTypes = {
@@ -91,6 +97,7 @@ Heatmap.propTypes = {
       created_utc: PropTypes.number,
     }),
   })),
+  selectPosts: PropTypes.func,
 };
 
 export default Heatmap;
