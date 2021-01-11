@@ -47,7 +47,8 @@ const PostsTable = ({ posts }) => {
           </TableRow>
           {sortedPosts.length > 0 && sortedPosts.map((post) => {
             const {
-              id, title, created_utc: createdUtc, score, num_comments: numComments, author, permalink,
+              id, title, created_utc: createdUtc, score, num_comments: numComments, author,
+              permalink,
             } = post.data;
             return (
               <TableRow key={id}>
