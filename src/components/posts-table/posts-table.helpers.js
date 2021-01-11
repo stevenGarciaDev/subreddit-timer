@@ -23,8 +23,10 @@ export const getTimeToDisplay = (createdAtUtc) => {
 export const sortPostsByDate = (posts) => {
   if (posts.length === 0) return posts;
   return posts.sort((a, b) => {
-    const dateOfPostA = getTimeOfPost(a.data.created_utc);
-    const dateOfPostB = getTimeOfPost(b.data.created_utc);
+    const { created_utc: createdUtcForPostA } = a.data;
+    const { created_utc: createdUtcForPostB } = b.data;
+    const dateOfPostA = getTimeOfPost(createdUtcForPostA);
+    const dateOfPostB = getTimeOfPost(createdUtcForPostB);
     return dateOfPostA.getMinutes() - dateOfPostB.getMinutes();
   });
 };

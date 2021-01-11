@@ -47,7 +47,7 @@ const PostsTable = ({ posts }) => {
           </TableRow>
           {sortedPosts.length > 0 && sortedPosts.map((post) => {
             const {
-              id, title, created_utc, score, num_comments, author, permalink,
+              id, title, created_utc: createdUtc, score, num_comments: numComments, author, permalink,
             } = post.data;
             return (
               <TableRow key={id}>
@@ -56,9 +56,9 @@ const PostsTable = ({ posts }) => {
                     {getLinkTextToDisplay(title, maxLengthForTitle)}
                   </TableLink>
                 </TableData>
-                <TableData>{getTimeToDisplay(created_utc)}</TableData>
+                <TableData>{getTimeToDisplay(createdUtc)}</TableData>
                 <TableData>{score}</TableData>
-                <TableData>{num_comments}</TableData>
+                <TableData>{numComments}</TableData>
                 <TableData>
                   <TableLink as="a" target="_blank" rel="noopener noreferrer" href={`https://reddit.com/u/${author}`}>
                     {getLinkTextToDisplay(author, maxLengthForAuthor)}

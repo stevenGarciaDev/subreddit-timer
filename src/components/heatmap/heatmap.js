@@ -30,7 +30,8 @@ const Heatmap = ({ posts, selectPosts }) => {
 
     posts.forEach((p) => {
       const milisecondsPerSecond = 1000;
-      const milisecondsSince1970 = p.data.created_utc * milisecondsPerSecond;
+      const { created_utc: createdUtc } = p.data;
+      const milisecondsSince1970 = createdUtc * milisecondsPerSecond;
       const dateOfPost = new Date(milisecondsSince1970);
 
       const dayIndexToStorePost = dateOfPost.getDay();
