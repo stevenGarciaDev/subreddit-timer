@@ -60,7 +60,7 @@ const PostsTable = ({ posts }) => {
                 <TableData>{score}</TableData>
                 <TableData>{num_comments}</TableData>
                 <TableData>
-                  <TableLink as="a" target="_blank" rel="noopener noreferrer" href={`https://www.reddit.com/user/${author}`}>
+                  <TableLink as="a" target="_blank" rel="noopener noreferrer" href={`https://www.reddit.com/u/${author}`}>
                     {getLinkTextToDisplay(author, maxLengthForAuthor)}
                   </TableLink>
                 </TableData>
