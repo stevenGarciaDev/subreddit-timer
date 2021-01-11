@@ -13,21 +13,16 @@ import {
 import HeatmapBox from '../heatmap-box';
 import UsertimeZone from '../user-timezone';
 
-const Heatmap = ({ posts }) => {
+const Heatmap = ({ posts, selectPosts }) => {
   let heatmap = [];
 
   const initializeEmptyHeatmap = () => {
     const daysInAWeek = 7;
-    const timeSectionsInADayForPosting = 24;
-    const map = [];
-    for (let i = 0; i < daysInAWeek; i++) {
-      const timeSections = [];
-      for (let n = 0; n < timeSectionsInADayForPosting; n++) {
-        timeSections.push([]);
-      }
-      map.push(timeSections);
-    }
-    return map;
+    const hoursInDayForPosting = 24;
+
+    return Array(daysInAWeek)
+      .fill()
+      .map(() => Array(hoursInDayForPosting).fill().map(() => []));
   };
 
   const createHeatmap = () => {
@@ -35,7 +30,8 @@ const Heatmap = ({ posts }) => {
 
     posts.forEach((p) => {
       const milisecondsPerSecond = 1000;
-      const milisecondsSince1970 = p.data.created_utc * milisecondsPerSecond;
+      const { created_utc: createdUtc } = p.data;
+      const milisecondsSince1970 = createdUtc * milisecondsPerSecond;
       const dateOfPost = new Date(milisecondsSince1970);
 
       const dayIndexToStorePost = dateOfPost.getDay();
@@ -77,7 +73,12 @@ const Heatmap = ({ posts }) => {
         <MapContainer>
           {heatmap.length > 0 && heatmap.map((day) => (
             day.map((postsPerHour) => (
-              <HeatmapBox key={uuidv4()} posts={postsPerHour} />))
+              <HeatmapBox
+                key={uuidv4()}
+                posts={postsPerHour}
+                setSectionOfPostsToDisplay={selectPosts}
+              />
+            ))
           ))}
         </MapContainer>
       </Grid>
@@ -88,6 +89,7 @@ const Heatmap = ({ posts }) => {
 
 Heatmap.defaultProps = {
   posts: [],
+  selectPosts: () => {},
 };
 
 Heatmap.propTypes = {
@@ -96,6 +98,7 @@ Heatmap.propTypes = {
       created_utc: PropTypes.number,
     }),
   })),
+  selectPosts: PropTypes.func,
 };
 
 export default Heatmap;

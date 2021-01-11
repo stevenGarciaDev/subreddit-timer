@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from './heatmap-box.styles';
 
-const HeatmapBox = ({ posts }) => (
-  <Box amountOfPosts={posts.length}>
+const HeatmapBox = ({ posts, setSectionOfPostsToDisplay }) => (
+  <Box amountOfPosts={posts.length} onClick={() => setSectionOfPostsToDisplay(posts)}>
     {posts.length}
   </Box>
 );
 
 HeatmapBox.defaultProps = {
   posts: [],
+  setSectionOfPostsToDisplay: () => {},
 };
 
 HeatmapBox.propTypes = {
@@ -18,6 +19,7 @@ HeatmapBox.propTypes = {
       title: PropTypes.string,
     }),
   })),
+  setSectionOfPostsToDisplay: PropTypes.func,
 };
 
 export default HeatmapBox;
