@@ -1,6 +1,5 @@
 import React from 'react';
-import {
-  screen, render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import PostsTable from '../components/posts-table';
 import postsData from '../__mocks__/posts-table-data.json';
