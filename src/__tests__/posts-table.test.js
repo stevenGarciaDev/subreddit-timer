@@ -14,7 +14,7 @@ describe('Posts Table', () => {
 
     const titleLink = screen.getByRole('link', { name: /How to use Google Sheets/i });
     const authorLink = screen.getByRole('link', { name: /J-Kob/i });
-    expect(titleLink).toHaveAttribute('href', 'http://reddit.com/r/javascript/comments/j6ment/how_to_use_google_sheets_as_a_database/');
-    expect(authorLink).toHaveAttribute('href', 'http://reddit.com/user/J-Kob');
+    expect(titleLink).toHaveAttribute('href', 'https://www.reddit.com/r/javascript/comments/j6ment/how_to_use_google_sheets_as_a_database/');
+    expect(authorLink).toHaveAttribute('href', 'https://www.reddit.com/user/J-Kob');
   });
 });
