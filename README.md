@@ -8,11 +8,9 @@ I developed a heatmap to show users when is the best time to post in a given sub
 
 ## Description
 
-I implemented this project during a course at [ooloo.io](https://ooloo.io/) which mimics a professional real-world agile development environment.
+I implemented this project during a course at [ooloo.io](https://ooloo.io/) which mimics a professional real-world agile development environment. The course was created by [Johannes Kettmann](https://jkettmann.com/about/), a senior Software Engineer.
 
 Designs were provided via Zeplin. The project tasks followed a Kanban style of agile development using ClickUp for project management.
-
-Code reviews were by [Johannes Kettmann](https://jkettmann.com/about/), a senior Software Engineer.
 
 The application, Subreddit Timer, solves the problem for reddit users who are deciding when is the best time to post on a subreddit.
 
@@ -60,7 +58,7 @@ You can view the application here.
 If you wish to run it locally, the steps may be followed below.
 
 ## Clone the project
-### `git clone ...`
+### `git clone https://github.com/ooloo-io/reddit-timer-react-stevenGarciaDev`
 
 ## Install
 ### `yarn install`
