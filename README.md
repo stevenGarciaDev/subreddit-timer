@@ -1,68 +1,87 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Subreddit Timer App
 
-## Available Scripts
+![App Home Screen](./docs/homepage_image.png "Homepage")
 
-In the project directory, you can run:
+I developed a heatmap to show users when is the best time to post in a given subreddit.
 
+![App Heatmap](./docs/heatmap_image.png "Heatmap")
+
+## Description
+
+I implemented this project during a course at [ooloo.io](https://ooloo.io/) which mimics a professional real-world agile development environment.
+
+Designs were provided via Zeplin. The project tasks followed a Kanban style of agile development using ClickUp for project management.
+
+Code reviews were by [Johannes Kettmann](https://jkettmann.com/about/), a senior Software Engineer.
+
+The application, Subreddit Timer, solves the problem for reddit users who are deciding when is the best time to post on a subreddit.
+
+To accomplish this, I utilized the Reddit API to retrieve the top 500 posts for a subreddit and implemented a heatmap to organize when the posts were created.
+
+This provides users with the data visualization needed to determine when is the most popular time to post. Users can then click on any area of the heatmap to view the top posts for that time of the day.
+
+## Skills Learned
+
+To implement this project, I used the React library for implementing the components for the user interface. To ensure code quality, I implemented integration tests with React Testing Library and Jest.
+
+Below includes the skills and technologies used to build the Subreddit Timer application.
+
+* Planned and implemented a complex UI component (Heatmap)
+* Professional Git workflow with pull requests 
+* Created components based on wireframe designs
+* Implemented asynchronous data fetching with error handling
+* Wrote integration tests to ensure code quality
+* Styled Components for organizing CSS styles
+* Debugging with VSCode 
+* PropTypes and Linting
+* React Router
+
+## Structure of code 
+
+The project was created with the Create React App setup.
+
+Within the src directory, I have organized the project components into the pages folder and components folder.
+
+To view the component responsible for the Search page and handling the response from the Reddit API, click [here](https://github.com/ooloo-io/reddit-timer-react-stevenGarciaDev/blob/master/src/pages/search/search.js).
+
+To view the Styled Components and CSS associated with styling the heatmap, click [here](https://github.com/ooloo-io/reddit-timer-react-stevenGarciaDev/blob/master/src/components/heatmap/heatmap.styles.js).
+
+My implementation for the heatmap component can be viewed [here](https://github.com/ooloo-io/reddit-timer-react-stevenGarciaDev/blob/master/src/components/heatmap/heatmap.js).
+
+The integration tests written for the components can be viewed [here](https://github.com/ooloo-io/reddit-timer-react-stevenGarciaDev/tree/master/src/__tests__).
+
+I developed a recursive implementation for the HTTP GET request to the Reddit API as it sets 100 as the maximum amount of subreddit posts to be retrieved 
+for a GET request. The requirements for the heatmap was to have 500 subreddit posts, which made a recursive implementation a clean way to accomplish this. The API service call to the Reddit API can be viewed [here](https://github.com/ooloo-io/reddit-timer-react-stevenGarciaDev/blob/master/src/services/subredditService.js).
+
+## Instructions
+
+You can view the application here.
+
+If you wish to run it locally, the steps may be followed below.
+
+## Clone the project
+### `git clone ...`
+
+## Install
+### `yarn install`
+
+## Run locally
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Run tests
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Author
 
-### `yarn build`
+Steven Garcia
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Website: [https://stevengarciadev.github.io/](https://stevengarciadev.github.io/)
+* LinkedIn: [https://www.linkedin.com/in/stevengarciadev/](https://www.linkedin.com/in/stevengarciadev/)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<hr />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Special Thanks to ooloo.io and Johannes Kettmann.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
