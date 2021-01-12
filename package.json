@@ -27,11 +27,6 @@
     "cypress": "TZ=Europe/Berlin cypress run",
     "cypress:open": "TZ=Europe/Berlin npx cypress open"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "sh scripts/validate-branch-name"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -53,12 +53,12 @@ for a GET request. The requirements for the heatmap was to have 500 subreddit po
 
 ## Instructions
 
-You can view the application here.
+You can view the application [here](https://subreddit-timer.netlify.app).
 
 If you wish to run it locally, the steps may be followed below.
 
 ## Clone the project
-### `git clone https://github.com/ooloo-io/reddit-timer-react-stevenGarciaDev`
+### `git clone https://github.com/stevenGarciaDev/subreddit-timer`
 
 ## Install
 ### `yarn install`
