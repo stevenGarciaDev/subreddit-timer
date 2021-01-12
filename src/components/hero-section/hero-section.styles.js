@@ -13,6 +13,7 @@ export const Headline = styled.p`
   font-family: Bitter, sans-serif;
   font-size: 38px;
   position: relative;
+  text-align: center;
   top: -20px;
 `;
 
